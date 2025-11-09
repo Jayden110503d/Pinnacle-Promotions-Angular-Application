@@ -1,0 +1,155 @@
+<!-- company-dashboard.html -->
+<div class="dashboard-container">
+  <!-- Top Navigation Bar -->
+  <mat-toolbar class="top-navbar">
+    <div class="navbar-content">
+      <div class="logo-section">
+        <img src="assets/pinnacle-logo.png" alt="Logo" class="navbar-logo" />
+        <span class="company-name">Pinnacle Promotions</span>
+      </div>
+
+      <div class="navbar-actions">
+        <button mat-icon-button [matMenuTriggerFor]="notificationsMenu">
+          <mat-icon [matBadge]="3" matBadgeColor="warn">notifications</mat-icon>
+        </button>
+
+        <mat-menu #notificationsMenu="matMenu">
+          <div class="notifications-header">
+            <h3>Notifications</h3>
+          </div>
+          <button mat-menu-item>
+            <mat-icon>local_shipping</mat-icon>
+            <span>Order #1233 has been shipped</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>check_circle</mat-icon>
+            <span>Campaign approved</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>receipt</mat-icon>
+            <span>New invoice available</span>
+          </button>
+        </mat-menu>
+
+        <button mat-icon-button [matMenuTriggerFor]="userMenu" class="user-menu-button">
+          <mat-icon>account_circle</mat-icon>
+        </button>
+
+        <mat-menu #userMenu="matMenu">
+          <div class="user-menu-header">
+            <div class="user-avatar">CU</div>
+            <div class="user-info">
+              <div class="user-name">Company User</div>
+              <div class="user-email">company@example.com</div>
+            </div>
+          </div>
+          <mat-divider></mat-divider>
+          <button mat-menu-item>
+            <mat-icon>person</mat-icon>
+            <span>Profile</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>settings</mat-icon>
+            <span>Settings</span>
+          </button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item (click)="onLogout()">
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+  </mat-toolbar>
+
+  <!-- Main Content Area -->
+  <mat-sidenav-container class="sidenav-container">
+    <!-- Side Navigation -->
+    <mat-sidenav mode="side" opened class="sidenav">
+      <app-company-sidebar></app-company-sidebar>
+    </mat-sidenav>
+
+    <!-- Main Content -->
+    <mat-sidenav-content class="main-content">
+      <div class="content-wrapper">
+        <!-- Page Header -->
+        <div class="page-header">
+          <div>
+            <h1>Company Dashboard</h1>
+            <p class="page-subtitle">Welcome back! Here's an overview of your account.</p>
+          </div>
+          <button mat-raised-button color="primary">
+            <mat-icon>add</mat-icon>
+            New Order
+          </button>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+          <mat-card *ngFor="let stat of stats" class="stat-card">
+            <div class="stat-content">
+              <div class="stat-icon" [style.background]="stat.color + '15'">
+                <mat-icon [style.color]="stat.color">{{ stat.icon }}</mat-icon>
+              </div>
+              <div class="stat-details">
+                <p class="stat-title">{{ stat.title }}</p>
+                <h2 class="stat-value">{{ stat.value }}</h2>
+                <div class="stat-change" [class.positive]="stat.changeType === 'positive'" [class.negative]="stat.changeType === 'negative'">
+                  <mat-icon>{{ stat.changeType === 'positive' ? 'trending_up' : 'trending_down' }}</mat-icon>
+                  <span>{{ stat.change }}</span>
+                </div>
+              </div>
+            </div>
+          </mat-card>
+        </div>
+
+        <!-- Recent Orders Table -->
+        <mat-card class="orders-card">
+          <mat-card-header>
+            <mat-card-title>Recent Orders</mat-card-title>
+            <button mat-button color="primary">View All Orders</button>
+          </mat-card-header>
+          <mat-card-content>
+            <table mat-table [dataSource]="recentOrders" class="orders-table">
+              <ng-container matColumnDef="orderNumber">
+                <th mat-header-cell *matHeaderCellDef>Order #</th>
+                <td mat-cell *matCellDef="let order">
+                  <strong>{{ order.orderNumber }}</strong>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="product">
+                <th mat-header-cell *matHeaderCellDef>Product</th>
+                <td mat-cell *matCellDef="let order">{{ order.product }}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef>Date</th>
+                <td mat-cell *matCellDef="let order">{{ order.date }}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="amount">
+                <th mat-header-cell *matHeaderCellDef>Amount</th>
+                <td mat-cell *matCellDef="let order">
+                  <strong>{{ order.amount }}</strong>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef>Status</th>
+                <td mat-cell *matCellDef="let order">
+                  <mat-chip [class]="order.status">
+                    {{ order.status }}
+                  </mat-chip>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

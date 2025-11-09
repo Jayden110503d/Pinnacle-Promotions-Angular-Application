@@ -1,0 +1,118 @@
+// company-sidebar.scss
+.sidebar {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: white;
+}
+
+.sidebar-header {
+  padding: 1.5rem 1rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.user-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.user-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.user-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.username {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #1e293b;
+  margin-bottom: 0.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-role {
+  font-size: 0.75rem;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.menu-list {
+  flex: 1;
+  padding: 1rem 0;
+  overflow-y: auto;
+
+  a {
+    margin: 0.25rem 1rem;
+    border-radius: 8px;
+    color: #475569;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: #f1f5f9;
+      color: #1e293b;
+    }
+
+    &.active {
+      background: #dcfce7;
+      color: #10b981;
+
+      .mat-icon {
+        color: #10b981;
+      }
+    }
+
+    .mat-icon {
+      color: #64748b;
+      margin-right: 0.75rem;
+    }
+
+    span {
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+  }
+}
+
+.sidebar-footer {
+  padding: 1rem 0;
+  border-top: 1px solid #e2e8f0;
+
+  a {
+    margin: 0 1rem;
+    border-radius: 8px;
+    color: #64748b;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: #f1f5f9;
+      color: #1e293b;
+    }
+
+    .mat-icon {
+      color: #64748b;
+      margin-right: 0.75rem;
+    }
+
+    span {
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+  }
+}

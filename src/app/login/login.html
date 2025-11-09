@@ -1,4 +1,4 @@
-<!-- login.html (updated button) -->
+<!-- login.html -->
 <div class="login-container">
   <mat-card class="login-card">
     <!-- Header Section with Logo -->
@@ -14,7 +14,62 @@
     <mat-card-content>
       <div class="welcome-section">
         <h2>Welcome Back</h2>
-        <p class="subtitle">Sign in to access your account</p>
+        <p class="subtitle">Choose your login type to continue</p>
+      </div>
+
+      <!-- Login Type Selection -->
+      <div class="login-options">
+        <!-- Admin Login Button -->
+        <div class="login-option">
+          <div class="option-header">
+            <div class="option-icon admin-icon">
+              <mat-icon>admin_panel_settings</mat-icon>
+            </div>
+            <div class="option-info">
+              <h3>Admin Dashboard</h3>
+              <p>Access admin controls and manage the system</p>
+            </div>
+          </div>
+          <button
+            mat-raised-button
+            class="login-type-button admin-button"
+            type="button"
+            (click)="onAdminLogin()"
+            [disabled]="isAdminLoading || isCompanyLoading"
+          >
+            <mat-icon *ngIf="!isAdminLoading">login</mat-icon>
+            <mat-spinner *ngIf="isAdminLoading" diameter="20" class="button-spinner"></mat-spinner>
+            {{ isAdminLoading ? 'Logging in...' : 'Login as Admin' }}
+          </button>
+        </div>
+
+        <div class="divider">
+          <span>OR</span>
+        </div>
+
+        <!-- Company Login Button -->
+        <div class="login-option">
+          <div class="option-header">
+            <div class="option-icon company-icon">
+              <mat-icon>business</mat-icon>
+            </div>
+            <div class="option-info">
+              <h3>Company Dashboard</h3>
+              <p>Manage campaigns, orders, and track analytics</p>
+            </div>
+          </div>
+          <button
+            mat-raised-button
+            class="login-type-button company-button"
+            type="button"
+            (click)="onCompanyLogin()"
+            [disabled]="isAdminLoading || isCompanyLoading"
+          >
+            <mat-icon *ngIf="!isCompanyLoading">login</mat-icon>
+            <mat-spinner *ngIf="isCompanyLoading" diameter="20" class="button-spinner"></mat-spinner>
+            {{ isCompanyLoading ? 'Logging in...' : 'Login as Company' }}
+          </button>
+        </div>
       </div>
 
       <!-- Security Notice -->
@@ -22,66 +77,6 @@
         <mat-icon class="notice-icon">info</mat-icon>
         <span><strong>Security Notice:</strong> Your account will be temporarily locked after 5 failed login attempts.</span>
       </div>
-
-      <!-- Login Form -->
-      <form class="login-form">
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Email Address</mat-label>
-          <input 
-            matInput 
-            type="email" 
-            [(ngModel)]="email" 
-            name="email"
-            placeholder="Jayden034@gmail.com"
-          />
-          <mat-icon matPrefix>email</mat-icon>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Password</mat-label>
-          <input 
-            matInput 
-            [type]="hidePassword ? 'password' : 'text'" 
-            [(ngModel)]="password" 
-            name="password"
-            placeholder="••••••••"
-          />
-          <mat-icon matPrefix>lock</mat-icon>
-          <button 
-            mat-icon-button 
-            matSuffix 
-            type="button"
-            (click)="hidePassword = !hidePassword"
-            [attr.aria-label]="'Hide password'"
-          >
-            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </button>
-        </mat-form-field>
-
-        <div class="remember-me">
-          <mat-checkbox [(ngModel)]="rememberMe" name="rememberMe">
-            Remember me for 30 days
-          </mat-checkbox>
-        </div>
-
-        <button 
-          mat-raised-button 
-          color="primary" 
-          class="sign-in-button"
-          type="button"
-          (click)="onLogin()"
-          [disabled]="isLoading"
-        >
-          <mat-icon *ngIf="!isLoading">login</mat-icon>
-          <mat-spinner *ngIf="isLoading" diameter="20" class="button-spinner"></mat-spinner>
-          {{ isLoading ? 'Signing in...' : 'Sign In' }}
-        </button>
-
-        <div class="forgot-password">
-          <mat-icon>help</mat-icon>
-          <a href="#">Forgot Password?</a>
-        </div>
-      </form>
     </mat-card-content>
   </mat-card>
 </div>
