@@ -1,0 +1,87 @@
+<!-- login.html (updated button) -->
+<div class="login-container">
+  <mat-card class="login-card">
+    <!-- Header Section with Logo -->
+    <div class="card-header">
+      <div class="logo-container">
+        <img src="assets/pinnacle-logo.png" alt="Pinnacle Promotions Logo" class="logo" />
+      </div>
+      <h1 class="company-name">Pinnacle Promotions</h1>
+      <p class="account-login">Account Login</p>
+    </div>
+
+    <!-- Content Section -->
+    <mat-card-content>
+      <div class="welcome-section">
+        <h2>Welcome Back</h2>
+        <p class="subtitle">Sign in to access your account</p>
+      </div>
+
+      <!-- Security Notice -->
+      <div class="security-notice">
+        <mat-icon class="notice-icon">info</mat-icon>
+        <span><strong>Security Notice:</strong> Your account will be temporarily locked after 5 failed login attempts.</span>
+      </div>
+
+      <!-- Login Form -->
+      <form class="login-form">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email Address</mat-label>
+          <input 
+            matInput 
+            type="email" 
+            [(ngModel)]="email" 
+            name="email"
+            placeholder="Jayden034@gmail.com"
+          />
+          <mat-icon matPrefix>email</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
+          <input 
+            matInput 
+            [type]="hidePassword ? 'password' : 'text'" 
+            [(ngModel)]="password" 
+            name="password"
+            placeholder="••••••••"
+          />
+          <mat-icon matPrefix>lock</mat-icon>
+          <button 
+            mat-icon-button 
+            matSuffix 
+            type="button"
+            (click)="hidePassword = !hidePassword"
+            [attr.aria-label]="'Hide password'"
+          >
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <div class="remember-me">
+          <mat-checkbox [(ngModel)]="rememberMe" name="rememberMe">
+            Remember me for 30 days
+          </mat-checkbox>
+        </div>
+
+        <button 
+          mat-raised-button 
+          color="primary" 
+          class="sign-in-button"
+          type="button"
+          (click)="onLogin()"
+          [disabled]="isLoading"
+        >
+          <mat-icon *ngIf="!isLoading">login</mat-icon>
+          <mat-spinner *ngIf="isLoading" diameter="20" class="button-spinner"></mat-spinner>
+          {{ isLoading ? 'Signing in...' : 'Sign In' }}
+        </button>
+
+        <div class="forgot-password">
+          <mat-icon>help</mat-icon>
+          <a href="#">Forgot Password?</a>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

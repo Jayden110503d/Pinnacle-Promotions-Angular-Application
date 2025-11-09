@@ -1,0 +1,224 @@
+// login.scss
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e8eef7 0%, #f5f7fa 100%);
+  padding: 1rem;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 0 !important;
+}
+
+.card-header {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  color: white;
+
+  .logo-container {
+    margin-bottom: 1rem;
+    
+    .logo {
+      height: 80px;
+      width: auto;
+      filter: brightness(0) invert(1);
+    }
+  }
+
+  .company-name {
+    margin: 0 0 0.5rem;
+    font-size: 1.75rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .account-login {
+    margin: 0;
+    font-size: 0.95rem;
+    opacity: 0.9;
+    font-weight: 400;
+  }
+}
+
+::ng-deep .mat-mdc-card-content {
+  padding: 2rem !important;
+  background: #fefefe;
+}
+
+.welcome-section {
+  text-align: center;
+  margin-bottom: 1.5rem;
+
+  h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.5rem;
+    color: #1e293b;
+    font-weight: 600;
+  }
+
+  .subtitle {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.95rem;
+  }
+}
+
+.security-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 6px;
+  margin-bottom: 1.75rem;
+  font-size: 0.875rem;
+  color: #1e40af;
+
+  .notice-icon {
+    flex-shrink: 0;
+    font-size: 1.25rem;
+    width: 20px;
+    height: 20px;
+    color: #3b82f6;
+  }
+
+  span {
+    line-height: 1.5;
+  }
+}
+
+.login-form {
+  .full-width {
+    width: 100%;
+  }
+
+  ::ng-deep .mat-mdc-form-field {
+    margin-bottom: 1rem;
+
+    .mat-mdc-text-field-wrapper {
+      background: #f8fafc;
+    }
+
+    .mdc-text-field--outlined {
+      .mdc-notched-outline__leading,
+      .mdc-notched-outline__notch,
+      .mdc-notched-outline__trailing {
+        border-color: #e2e8f0;
+      }
+
+      &:hover .mdc-notched-outline {
+        .mdc-notched-outline__leading,
+        .mdc-notched-outline__notch,
+        .mdc-notched-outline__trailing {
+          border-color: #cbd5e1;
+        }
+      }
+    }
+
+    .mat-mdc-form-field-icon-prefix {
+      padding-left: 0.75rem;
+      color: #64748b;
+    }
+  }
+
+  ::ng-deep .mat-mdc-input-element::placeholder {
+    color: #94a3b8;
+  }
+}
+
+.remember-me {
+  margin-bottom: 1.5rem;
+
+  ::ng-deep .mat-mdc-checkbox {
+    .mdc-checkbox__background {
+      border-color: #cbd5e1;
+    }
+
+    .mdc-form-field {
+      color: #475569;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+.sign-in-button {
+  width: 100%;
+  height: 48px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  margin-bottom: 1.25rem;
+  text-transform: none;
+  letter-spacing: 0.3px;
+
+  ::ng-deep .mat-icon {
+    margin-right: 0.5rem;
+  }
+}
+
+::ng-deep .mat-mdc-raised-button.mat-primary {
+  --mdc-protected-button-container-color: #1e40af;
+  --mdc-protected-button-label-text-color: white;
+  
+  &:hover {
+    --mdc-protected-button-container-color: #1e3a8a;
+    box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+  }
+}
+
+.forgot-password {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  
+  .mat-icon {
+    font-size: 1.125rem;
+    width: 18px;
+    height: 18px;
+    color: #1e40af;
+  }
+
+  a {
+    color: #1e40af;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 480px) {
+  .login-card {
+    margin: 0.5rem;
+  }
+
+  .card-header {
+    padding: 2rem 1.5rem;
+
+    .logo-container .logo {
+      height: 60px;
+    }
+
+    .company-name {
+      font-size: 1.5rem;
+    }
+  }
+
+  ::ng-deep .mat-mdc-card-content {
+    padding: 1.5rem !important;
+  }
+}
