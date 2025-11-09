@@ -1,0 +1,292 @@
+<div class="settings-container">
+  <app-admin-sidebar></app-admin-sidebar>
+
+  <div class="main-content">
+    <!-- Header -->
+    <div class="page-header">
+      <div class="header-content">
+        <h1>Settings</h1>
+        <p class="subtitle">Manage your account settings and preferences</p>
+      </div>
+    </div>
+
+    <!-- Profile Settings -->
+    <mat-card class="settings-card">
+      <h2>
+        <mat-icon>person</mat-icon>
+        Profile Settings
+      </h2>
+      <mat-divider></mat-divider>
+
+      <div class="settings-content">
+        <div class="form-grid">
+          <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input matInput [(ngModel)]="profile.firstName">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input matInput [(ngModel)]="profile.lastName">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" [(ngModel)]="profile.email">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Phone</mat-label>
+            <input matInput type="tel" [(ngModel)]="profile.phone">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Company</mat-label>
+            <input matInput [(ngModel)]="profile.company">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Job Title</mat-label>
+            <input matInput [(ngModel)]="profile.jobTitle">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Timezone</mat-label>
+            <mat-select [(ngModel)]="profile.timezone">
+              <mat-option *ngFor="let tz of timezones" [value]="tz">{{tz}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Language</mat-label>
+            <mat-select [(ngModel)]="profile.language">
+              <mat-option *ngFor="let lang of languages" [value]="lang.code">{{lang.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="action-buttons">
+          <button mat-raised-button color="primary" (click)="saveProfileSettings()">
+            Save Changes
+          </button>
+        </div>
+      </div>
+    </mat-card>
+
+    <!-- Notification Settings -->
+    <mat-card class="settings-card">
+      <h2>
+        <mat-icon>notifications</mat-icon>
+        Notification Settings
+      </h2>
+      <mat-divider></mat-divider>
+
+      <div class="settings-content">
+        <div class="settings-list">
+          <div class="setting-item">
+            <div class="setting-info">
+              <h3>Email Notifications</h3>
+              <p>Receive email notifications for important updates</p>
+            </div>
+            <mat-slide-toggle [(ngModel)]="accountSettings.emailNotifications"></mat-slide-toggle>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <h3>Push Notifications</h3>
+              <p>Receive push notifications in your browser</p>
+            </div>
+            <mat-slide-toggle [(ngModel)]="accountSettings.pushNotifications"></mat-slide-toggle>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <h3>SMS Notifications</h3>
+              <p>Receive text messages for critical alerts</p>
+            </div>
+            <mat-slide-toggle [(ngModel)]="accountSettings.smsNotifications"></mat-slide-toggle>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <h3>Marketing Emails</h3>
+              <p>Receive emails about new features and updates</p>
+            </div>
+            <mat-slide-toggle [(ngModel)]="accountSettings.marketingEmails"></mat-slide-toggle>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <h3>Weekly Reports</h3>
+              <p>Receive weekly summary reports via email</p>
+            </div>
+            <mat-slide-toggle [(ngModel)]="accountSettings.weeklyReports"></mat-slide-toggle>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <h3>Monthly Reports</h3>
+              <p>Receive monthly summary reports via email</p>
+            </div>
+            <mat-slide-toggle [(ngModel)]="accountSettings.monthlyReports"></mat-slide-toggle>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button mat-raised-button color="primary" (click)="saveNotificationSettings()">
+            Save Changes
+          </button>
+        </div>
+      </div>
+    </mat-card>
+
+    <!-- Security Settings -->
+    <mat-card class="settings-card">
+      <h2>
+        <mat-icon>security</mat-icon>
+        Security Settings
+      </h2>
+      <mat-divider></mat-divider>
+
+      <div class="settings-content">
+        <div class="settings-list">
+          <div class="setting-item">
+            <div class="setting-info">
+              <h3>Two-Factor Authentication</h3>
+              <p>Add an extra layer of security to your account</p>
+            </div>
+            <mat-slide-toggle [(ngModel)]="securitySettings.twoFactorAuth"></mat-slide-toggle>
+          </div>
+
+          <div class="setting-item full-width">
+            <div class="setting-info">
+              <h3>Session Timeout</h3>
+              <p>Automatically log out after inactivity</p>
+            </div>
+            <mat-form-field appearance="outline" class="setting-select">
+              <mat-select [(ngModel)]="securitySettings.sessionTimeout">
+                <mat-option *ngFor="let timeout of sessionTimeouts" [value]="timeout.value">
+                  {{timeout.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="setting-item full-width">
+            <div class="setting-info">
+              <h3>Password Expiry</h3>
+              <p>Require password change after specified period</p>
+            </div>
+            <mat-form-field appearance="outline" class="setting-select">
+              <mat-select [(ngModel)]="securitySettings.passwordExpiry">
+                <mat-option *ngFor="let expiry of passwordExpiries" [value]="expiry.value">
+                  {{expiry.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="setting-item full-width">
+            <div class="setting-info">
+              <h3>Change Password</h3>
+              <p>Update your account password</p>
+            </div>
+            <button mat-stroked-button (click)="changePassword()">
+              Change Password
+            </button>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button mat-raised-button color="primary" (click)="saveSecuritySettings()">
+            Save Changes
+          </button>
+        </div>
+      </div>
+    </mat-card>
+
+    <!-- Appearance Settings -->
+    <mat-card class="settings-card">
+      <h2>
+        <mat-icon>palette</mat-icon>
+        Appearance Settings
+      </h2>
+      <mat-divider></mat-divider>
+
+      <div class="settings-content">
+        <div class="settings-list">
+          <div class="setting-item full-width">
+            <div class="setting-info">
+              <h3>Theme</h3>
+              <p>Choose your preferred color theme</p>
+            </div>
+            <mat-form-field appearance="outline" class="setting-select">
+              <mat-select [(ngModel)]="appearanceSettings.theme">
+                <mat-option *ngFor="let theme of themes" [value]="theme.value">
+                  {{theme.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <h3>Compact Mode</h3>
+              <p>Use a more compact interface layout</p>
+            </div>
+            <mat-slide-toggle [(ngModel)]="appearanceSettings.compactMode"></mat-slide-toggle>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <h3>Collapsed Sidebar</h3>
+              <p>Start with sidebar collapsed by default</p>
+            </div>
+            <mat-slide-toggle [(ngModel)]="appearanceSettings.sidebarCollapsed"></mat-slide-toggle>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button mat-raised-button color="primary" (click)="saveAppearanceSettings()">
+            Save Changes
+          </button>
+        </div>
+      </div>
+    </mat-card>
+
+    <!-- Data & Privacy -->
+    <mat-card class="settings-card danger-zone">
+      <h2>
+        <mat-icon>warning</mat-icon>
+        Data & Privacy
+      </h2>
+      <mat-divider></mat-divider>
+
+      <div class="settings-content">
+        <div class="danger-actions">
+          <div class="danger-action-item">
+            <div class="action-info">
+              <h3>Export Your Data</h3>
+              <p>Download a copy of all your data</p>
+            </div>
+            <button mat-stroked-button (click)="exportData()">
+              <mat-icon>download</mat-icon>
+              Export Data
+            </button>
+          </div>
+
+          <div class="danger-action-item">
+            <div class="action-info">
+              <h3>Delete Account</h3>
+              <p>Permanently delete your account and all data</p>
+            </div>
+            <button mat-stroked-button color="warn" (click)="deleteAccount()">
+              <mat-icon>delete_forever</mat-icon>
+              Delete Account
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>

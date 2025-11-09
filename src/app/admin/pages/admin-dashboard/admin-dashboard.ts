@@ -13,7 +13,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatTableModule } from '@angular/material/table';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDividerModule } from '@angular/material/divider';
-import { SidebarComponent } from '../admin-sidebar/admin-sidebar';
+import { AdminSidebarComponent } from '../../components/admin-sidebar/admin-sidebar';
 
 interface DashboardStats {
   title: string;
@@ -47,7 +47,7 @@ interface RecentActivity {
     MatTableModule,
     MatChipsModule,
     MatDividerModule,
-    SidebarComponent
+    AdminSidebarComponent
   ],
   templateUrl: './admin-dashboard.html',  // <-- Changed from .component.html to .html
   styleUrls: ['./admin-dashboard.scss']   // <-- Changed from .component.scss to .scss
