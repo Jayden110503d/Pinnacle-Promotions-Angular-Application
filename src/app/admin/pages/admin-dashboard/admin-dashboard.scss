@@ -255,83 +255,50 @@
   }
 }
 
-.activity-card {
+// Charts Grid
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+
+  .tastings-chart {
+    grid-column: span 1;
+  }
+}
+
+.chart-card {
   border-radius: 12px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
 
   ::ng-deep .mat-mdc-card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem;
-    border-bottom: 1px solid #e2e8f0;
+    padding: 1.5rem 1.5rem 1rem;
   }
 
   ::ng-deep .mat-mdc-card-title {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     font-weight: 600;
     color: #1e293b;
     margin: 0;
   }
 
   ::ng-deep .mat-mdc-card-content {
-    padding: 0;
-  }
-}
-
-.activity-table {
-  width: 100%;
-
-  th {
-    background: #f8fafc;
-    color: #64748b;
-    font-weight: 600;
-    font-size: 0.875rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    padding: 0 1.5rem 1.5rem;
   }
 
-  td, th {
-    padding: 1rem 1.5rem;
-  }
+  .chart-container {
+    position: relative;
+    height: 300px;
+    width: 100%;
 
-  tr:hover {
-    background: #f8fafc;
-  }
-
-  .user-cell {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-
-    .user-avatar-small {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: #1e40af;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-      font-size: 0.875rem;
-    }
-  }
-
-  mat-chip {
-    font-size: 0.75rem;
-    font-weight: 600;
-    border-radius: 12px;
-    padding: 0.25rem 0.75rem;
-
-    &.completed {
-      background: #dcfce7;
-      color: #15803d;
-    }
-
-    &.pending {
-      background: #fef3c7;
-      color: #b45309;
+    canvas {
+      max-height: 300px;
     }
   }
 }
@@ -367,5 +334,13 @@
 
   .stats-grid {
     grid-template-columns: 1fr;
+  }
+
+  .charts-grid {
+    grid-template-columns: 1fr;
+
+    .tastings-chart {
+      grid-column: span 1;
+    }
   }
 }
