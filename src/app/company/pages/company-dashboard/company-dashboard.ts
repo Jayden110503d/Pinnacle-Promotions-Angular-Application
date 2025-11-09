@@ -13,7 +13,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatTableModule } from '@angular/material/table';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDividerModule } from '@angular/material/divider';
-import { CompanySidebarComponent } from '../company-sidebar/company-sidebar';
+import { CompanySidebarComponent } from '../../components/company-sidebar/company-sidebar';
 
 interface DashboardStats {
   title: string;
